@@ -1,0 +1,52 @@
+@import 'values/colors.scss';
+
+.alert-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+
+    .alert-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .alert {
+        position: absolute;
+        pointer-events: all;
+        background-color: $background-color;
+        padding: 30px;
+        border-radius: 15px;
+
+        .alert-close {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-around;
+            gap: 15px;
+            cursor: pointer;
+            color: $accent;
+            font-size: 20px;
+            user-select: none;
+        }
+
+        .alert-title {
+            font-size: 18pt;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+    }
+}
