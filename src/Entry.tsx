@@ -1,6 +1,9 @@
 import { Field } from './forms/Field';
 import { Form } from './forms/Form';
 
+import { TextField } from './forms/TextField';
+import { PasswordField } from './forms/PasswordField';
+
 // This is where the application enters
 export const Entry = () => {
     // Handle the submission of the form
@@ -21,9 +24,18 @@ export const Entry = () => {
 
             {/* Form Test */}
             <Form form_name="Test" onSubmit={onSubmit}>
-                <Field name="email" />
-                <Field name="name" />
-                <Field name="password" />
+                <TextField
+                    label="Email"
+                    name="email"
+                    error_msg="Invalid email address."
+                    validation="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+                />
+                <TextField label="Full Name" name="name" validation="empty" />
+                <PasswordField
+                    name={'password'}
+                    label="Password"
+                    validation="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$"
+                />
 
                 <button type="submit">Submit</button>
             </Form>

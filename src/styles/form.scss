@@ -1,4 +1,29 @@
+@import './vars/colors.scss';
+
 .form {
     display: flex;
     flex-direction: column;
+}
+
+// Field values
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+
+    .error {
+        color: $error-color;
+    }
+}
+
+// Password field
+.password-field {
+    position: relative;
+
+    .password-wrapper {
+        position: absolute;
+        bottom: 0;
+        right: 10px;
+    }
 }

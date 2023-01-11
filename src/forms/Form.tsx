@@ -10,16 +10,18 @@ export interface Props {
 
 // Interface for a form field
 export interface FormField {
+    label?: string;
     form_name?: string;
     name: string;
     onChange?: any;
-    touched?: any;
+    validation?: string;
+    error_msg?: string;
 }
 
 export interface FormValue {
     name: string;
     value: any;
-    touched: boolean;
+    error: string;
 }
 
 // This is the wrapper form, it handles all the form checking, etc.
@@ -27,7 +29,7 @@ export const Form = (props: Props) => {
     const [formFields, setFormFields] = useState<FormValue[]>([]);
 
     // Handle the change of a field
-    const onChange = (value: any, name: string) => {
+    const onChange = (name: string, value: any, error: string) => {
         // Get the index of the field
         const index = formFields.findIndex((field) => field.name === name);
 
@@ -39,7 +41,7 @@ export const Form = (props: Props) => {
                 {
                     name,
                     value,
-                    touched: true,
+                    error: '',
                 },
             ]);
 
@@ -49,7 +51,7 @@ export const Form = (props: Props) => {
 
         // Update the field
         formFields[index].value = value;
-        formFields[index].touched = true;
+        formFields[index].error = error;
 
         // Update the state
         setFormFields([...formFields]);
@@ -57,10 +59,7 @@ export const Form = (props: Props) => {
 
     // Handle the submission of the form
     const onSubmit = (e: any) => {
-        // Prevent the default form action
         e.preventDefault();
-
-        // Pass on to the onSubmit function
         props.onSubmit(formFields);
     };
 

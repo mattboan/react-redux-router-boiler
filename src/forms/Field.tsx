@@ -4,6 +4,7 @@ import { FormField } from './Form';
 
 export interface Props extends FormField {}
 
+// Default field for copying, bare bones
 export const Field = (props: Props) => {
     const [value, setValue] = useState('');
 
@@ -12,7 +13,7 @@ export const Field = (props: Props) => {
         setValue(e.target.value);
 
         // Call the onChange function
-        props.onChange(e.target.value, props.name);
+        props.onChange(props.name, e.target.value);
     };
 
     return (
